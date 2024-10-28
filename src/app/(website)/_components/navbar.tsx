@@ -15,8 +15,8 @@ const LandingPageNavBar = (props: Props) => {
         <Image
           alt="logo"
           src="/logo.png"
-          width={43}
-          height={43}
+          width={49}
+          height={49}
           className='rounded-full'
         />
         ClipSync
@@ -24,7 +24,7 @@ const LandingPageNavBar = (props: Props) => {
       <div className="hidden gap-x-10 items-center lg:flex">
         <Link
           href="/"
-          className="bg-[#20abdd] py-2 px-5 font-semibold text-lg rounded-full hover:bg-[#7320DD]/80"
+          className="bg-[#20abdd] py-2 px-5 font-semibold text-lg rounded-full hover:bg-[#20c4dd]/80"
         >
           Home
         </Link>
