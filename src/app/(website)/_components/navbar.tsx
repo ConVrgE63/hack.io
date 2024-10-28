@@ -14,17 +14,17 @@ const LandingPageNavBar = (props: Props) => {
         <Menu className="w-8 h-8" />
         <Image
           alt="logo"
-          src="/FlowSync.png"
+          src="/logo.png"
           width={43}
           height={43}
           className='rounded-full'
         />
-        FlowSync
+        ClipSync
       </div>
       <div className="hidden gap-x-10 items-center lg:flex">
         <Link
           href="/"
-          className="bg-[#7320DD] py-2 px-5 font-semibold text-lg rounded-full hover:bg-[#7320DD]/80"
+          className="bg-[#20abdd] py-2 px-5 font-semibold text-lg rounded-full hover:bg-[#7320DD]/80"
         >
           Home
         </Link>

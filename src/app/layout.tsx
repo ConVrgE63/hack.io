@@ -8,8 +8,8 @@ import { ThemeProvider } from "@/components/theme";
 const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FlowSync",
-  description: "Share AI powered videos with your friends.",
+  title: "ClipSync",
+  description: "ClipSync is a video messaging platform that lets users record their screen, webcam, and voice to create quick video messages",
 };
 
 export default function RootLayout({
