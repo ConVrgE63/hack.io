@@ -18,19 +18,20 @@ import React from 'react'
 import Modal from '../modal'
 import { Menu, PlusCircle } from 'lucide-react'
 import Search from '../search'
-// import { MENU_ITEMS } from '@/constants'
-// import SidebarItem from './sidebar-item'
+import { MENU_ITEMS } from '@/constants'
+import SidebarItem from './sidebar-item'
 import { getNotifications } from '@/actions/user'
 import { useQueryData } from '@/hooks/useQueryData'
-// import WorkspacePlaceholder from './workspace-placeholder'
-// import GlobalCard from '../global-card'
+import WorkspacePlaceholder from './workspace-placeholder'
+import GlobalCard from '../global-card'
 import { Button } from '@/components/ui/button'
 import Loader from '../loader'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-// import InfoBar from '../info-bar'
+import InfoBar from '../info-bar'
 import { useDispatch } from 'react-redux'
 // import { WORKSPACES } from '@/redux/slices/workspaces'
 // import PaymentButton from '../payment-button'
+// import Loader from '../loader'
 type Props = {
   activeWorkspaceId: string
 }
@@ -42,7 +43,7 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
   const dispatch  = useDispatch();
 
   const { data, isFetched } = useQueryData(['user-workspaces'], getWorkSpaces)
-//   const menuItems = MENU_ITEMS(activeWorkspaceId)
+  const menuItems = MENU_ITEMS(activeWorkspaceId)
 
   const { data: notifications } = useQueryData(
     ['user-notifications'],
@@ -131,7 +132,7 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
       <p className="w-full text-[#9D9D9D] font-bold mt-4">Menu</p>
       <nav className="w-full">
         <ul>
-          {/* {menuItems.map((item) => (
+          {menuItems.map((item) => (
             <SidebarItem
               href={item.href}
               icon={item.icon}
@@ -145,7 +146,7 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
                 0
               }
             />
-          ))} */}
+          ))}
         </ul>
       </nav>
       <Separator className="w-4/5" />
@@ -167,50 +168,57 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
             workspace.workspace.map(
               (item) =>
                 item.type !== 'PERSONAL' && (
-                //   <SidebarItem
-                //     href={`/dashboard/${item.id}`}
-                //     selected={pathName === `/dashboard/${item.id}`}
-                //     title={item.name}
-                //     notifications={0}
-                //     key={item.name}
-                //     icon={
-                //       <WorkspacePlaceholder>
-                //         {item.name.charAt(0)}
-                //       </WorkspacePlaceholder>
-                //     }
-                //   />
+                  <SidebarItem
+                    href={`/dashboard/${item.id}`}
+                    selected={pathName === `/dashboard/${item.id}`}
+                    title={item.name}
+                    notifications={0}
+                    key={item.name}
+                    icon={
+                      <WorkspacePlaceholder>
+                        {item.name.charAt(0)}
+                      </WorkspacePlaceholder>
+                    }
+                  />
+                // <></>
                 )
             )}
           {workspace.members.length > 0 &&
             workspace.members.map((item) => (
-            //   <SidebarItem
-            //     href={`/dashboard/${item.WorkSpace.id}`}
-            //     selected={pathName === `/dashboard/${item.WorkSpace.id}`}
-            //     title={item.WorkSpace.name}
-            //     notifications={0}
-            //     key={item.WorkSpace.name}
-            //     icon={
-            //       <WorkspacePlaceholder>
-            //         {item.WorkSpace.name.charAt(0)}
-            //       </WorkspacePlaceholder>
-            //     }
-            //   />
+              <SidebarItem
+                href={`/dashboard/${item.WorkSpace.id}`}
+                selected={pathName === `/dashboard/${item.WorkSpace.id}`}
+                title={item.WorkSpace.name}
+                notifications={0}
+                key={item.WorkSpace.name}
+                icon={
+                  <WorkspacePlaceholder>
+                    {item.WorkSpace.name.charAt(0)}
+                  </WorkspacePlaceholder>
+                }
+              />
+            // <></>
             ))}
         </ul>
       </nav>
       <Separator className="w-4/5" />
       {workspace.subscription?.plan === 'FREE' && (
-        // <GlobalCard
-        //   title="Upgrade to Pro"
-        //   description=" Unlock AI features like transcription, AI summary, and more."
-        //   footer={<PaymentButton />}
-        // />
+        <GlobalCard
+          title="Upgrade to Pro"
+          description=" Unlock AI features like transcription, AI summary, and more."
+          footer={
+            <Button className='text-sm w-full'>
+              Upgrade
+            </Button>
+          }
+        />
+        // <></>
       )}
     </div>
   )
   return (
     <div className="full">
-      {/* <InfoBar /> */}
+      <InfoBar />
       <div className="md:hidden fixed my-4">
         <Sheet>
           <SheetTrigger
@@ -235,6 +243,7 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
       <div className="md:block hidden h-full">{SidebarSection}</div>
     </div>
   )
+  
 }
 
 export default Sidebar 
